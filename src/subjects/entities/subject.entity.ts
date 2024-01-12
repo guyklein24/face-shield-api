@@ -1,5 +1,6 @@
 import { Entity, Column, PrimaryGeneratedColumn } from 'typeorm';
 import { ApiProperty } from '@nestjs/swagger';
+import internal from 'stream';
 
 @Entity({ name: 'subjects' })
 export class Subject {
@@ -9,7 +10,7 @@ export class Subject {
 
   @Column()
   @ApiProperty({ example: 'Person 1' })
-  name: string;
+  myName: string;
 
   @Column()
   @ApiProperty({ example: 'Description for Person 1' })
@@ -20,5 +21,5 @@ export class Subject {
     example: 'base64encodedstring==',
     format: 'byte',
   })
-  faceEncoding: string;
+  faceEncoding: number;
 }
