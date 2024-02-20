@@ -1,4 +1,3 @@
-
 import { Entity, Column, PrimaryGeneratedColumn } from 'typeorm';
 import { ApiProperty } from '@nestjs/swagger';
 
@@ -23,4 +22,8 @@ export class User {
   @Column()
   @ApiProperty({ example: 'hashed_password' })
   password: string;
+
+  @Column({ default: false })
+  @ApiProperty({ example: false })
+  subscribeAlerts: boolean;
 }
