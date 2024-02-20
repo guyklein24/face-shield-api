@@ -13,9 +13,9 @@ export class Alert {
 
   @Column()
   @ApiProperty({ example: 1 })
-  cameraId: number;
+  cameraName: string;
 
   @Column()
   @ApiProperty({ example: 1 })
-  subjectId: number;
+  subjectName: string;
 }
