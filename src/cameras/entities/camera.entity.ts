@@ -1,5 +1,3 @@
-// camera.entity.ts
-
 import { Entity, Column, PrimaryGeneratedColumn } from 'typeorm';
 import { ApiProperty } from '@nestjs/swagger';
 
@@ -17,7 +15,7 @@ export class Camera {
     @ApiProperty({ example: true })
     isEnabled: boolean;
 
-    @Column()
-    @ApiProperty({ example: 'Online' })
-    status: string;
+    @Column({ nullable: true }) // Allow null to represent use of default camera
+    @ApiProperty({ example: 'rtsp://example.com/live' })
+    rtspUrl?: string;
 }
