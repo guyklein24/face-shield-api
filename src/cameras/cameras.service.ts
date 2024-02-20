@@ -65,4 +65,14 @@ export class CamerasService {
 
     await this.cameraRepository.remove(camera);
   }
+
+  async updateAllCamerasState(isEnabled: boolean): Promise<void> {
+    const cameras = await this.cameraRepository.find();
+    await Promise.all(
+        cameras.map(async (camera) => {
+            camera.isEnabled = isEnabled;
+            await this.cameraRepository.save(camera);
+        })
+    );
+}
 }

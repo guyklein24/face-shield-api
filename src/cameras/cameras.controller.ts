@@ -24,7 +24,12 @@ export class CamerasController {
   @Patch(':id')
   update(@Param('id') id: number, @Body() updatedCamera: Partial<Camera>): Promise<Camera> {
     return this.camerasService.update(id, updatedCamera);
-  }  
+  }
+
+  @Patch()
+  async updateCamerasState(@Body() camerasToUpdate: { ids: number[], isEnabled: boolean }) {
+    return this.camerasService.updateAllCamerasState(camerasToUpdate.isEnabled);
+  }
 
   @Delete(':id')
   remove(@Param('id') id: number) {
