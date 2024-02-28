@@ -2,6 +2,17 @@ version: '3.8'
 
 services:
 
+  face-shield-api:
+    image: face-shield-api:latest
+    container_name: face-shield-api
+    environment:
+      POSTGRES_DB: face_shield_db
+      POSTGRES_USER: root
+      POSTGRES_PASSWORD: Password1
+      POSTGRES_HOST: postgres
+    ports:
+      - 3000:3000
+
   postgres:
     image: postgres:latest
     container_name: postgres_db
