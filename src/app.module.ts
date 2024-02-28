@@ -1,5 +1,3 @@
-// src/app.module.ts
-
 import { Module } from '@nestjs/common';
 import { TypeOrmModule } from '@nestjs/typeorm';
 
@@ -21,16 +19,18 @@ import { AlertsService } from './alerts/alerts.service';
 
 @Module({
   imports: [
-    TypeOrmModule.forRoot({
-      "type": "postgres",
-      "host": "localhost",
-      "port": 5432,
-      "username": "root",
-      "password": "Password1",
-      "database": "face_shield_db",
-      "synchronize": true,
-      "logging": true,
-      "entities": ["dist/**/*.entity.js"],      
+    TypeOrmModule.forRootAsync({
+      useFactory: () => ({
+        type: 'postgres',
+        host: process.env.POSTGRES_HOST || 'localhost',
+        port: parseInt(process.env.POSTGRES_PORT, 10) || 5432,
+        username: process.env.POSTGRES_USER,
+        password: process.env.POSTGRES_PASSWORD,
+        database: process.env.POSTGRES_DB,
+        synchronize: true,
+        logging: true,
+        entities: ["dist/**/*.entity.js"],
+      }),
     }),
     TypeOrmModule.forFeature([User, Camera, Subject, Alert]),
   ],
